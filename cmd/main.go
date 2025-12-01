@@ -12,20 +12,20 @@ import (
 )
 
 func main() {
-	// Podatki študentov
-	studenti := map[string]redovalnica.Student{
-		"63220333": {Ime: "Lana", Priimek: "Tkalcic", Ocene: []int{7, 8, 9, 9, 7, 8, 8}},
-		"63220123": {Ime: "Marjanca", Priimek: "Token", Ocene: []int{10, 9, 9, 9, 8, 8, 10}},
-		"63220666": {Ime: "Peter", Priimek: "Miki", Ocene: []int{1, 2, 3, 2, 1}},
-		"63220010": {Ime: "Pipi", Priimek: "Strel", Ocene: []int{3, 4, 2, 5, 2, 3, 6}},
-		"63220999": {Ime: "Jozica", Priimek: "Marks", Ocene: []int{5, 6, 8, 9, 2, 3}},
-	}
+	// Ustvarite mapo študentov
+	studenti := make(map[string]redovalnica.Student)
+
+	// Dodajte začetne študente
+	studenti["63220333"] = redovalnica.Student{Ime: "Lana", Priimek: "Tkalcic", Ocene: []int{7, 8, 9, 9, 7, 8, 8}}
+	studenti["63220123"] = redovalnica.Student{Ime: "Marjanca", Priimek: "Token", Ocene: []int{10, 9, 9, 9, 8, 8, 10}}
+	studenti["63220666"] = redovalnica.Student{Ime: "Peter", Priimek: "Miki", Ocene: []int{1, 2, 3, 2, 1}}
+	studenti["63220010"] = redovalnica.Student{Ime: "Pipi", Priimek: "Strel", Ocene: []int{3, 4, 2, 5, 2, 3, 6}}
+	studenti["63220999"] = redovalnica.Student{Ime: "Jozica", Priimek: "Marks", Ocene: []int{5, 6, 8, 9, 2, 3}}
 
 	cmd := &cli.Command{
 		Name:  "redovalnica",
 		Usage: "Aplikacija za upravljanje študentskih ocen",
 
-		// TRI STIKALA iz navodil
 		Flags: []cli.Flag{
 			&cli.IntFlag{
 				Name:  "stOcen",
@@ -44,30 +44,33 @@ func main() {
 			},
 		},
 
-		// UKAZI, ki kličejo funkcije iz paketa redovalnica
 		Commands: []*cli.Command{
 			{
 				Name:  "dodaj",
 				Usage: "Dodaj oceno študentu",
 				Action: func(ctx context.Context, cmd *cli.Command) error {
-					// Preberi argumente
 					args := cmd.Args()
 					if args.Len() != 2 {
-						fmt.Println("Uporaba: dodaj <vpisna_stevilka> <ocena>")
+						fmt.Println("Uporaba: redovalnica dodaj <vpisna_stevilka> <ocena>")
 						return nil
 					}
 
 					vpisna := args.Get(0)
-					ocena, err := strconv.Atoi(args.Get(1))
+					ocenaStr := args.Get(1)
+
+					ocena, err := strconv.Atoi(ocenaStr)
 					if err != nil {
-						fmt.Println("Napaka: ocena mora biti število")
+						fmt.Printf("Napaka: '%s' ni veljavna ocena\n", ocenaStr)
 						return nil
 					}
 
-					// DODAJ OCENO - uporabi funkcijo iz paketa
-					// Tukaj morate še povezati stikala s funkcijo!
-					// Za zdaj delamo brez stikal
+					// PREPROSTO POKLIČITE FUNKCIJO, NE PRIPRAVLJATE SE NA NAPAKO
 					redovalnica.DodajOceno(studenti, vpisna, ocena)
+					// Funkcija bo sama izpisala napako če je potrebno
+
+					// Dodajte še potrditev
+					fmt.Printf("Ukaz izveden. Preverite z 'redovalnica izpis'.\n")
+
 					return nil
 				},
 			},
@@ -75,7 +78,6 @@ func main() {
 				Name:  "izpis",
 				Usage: "Izpiši vse ocene",
 				Action: func(ctx context.Context, cmd *cli.Command) error {
-					// Kliče funkcijo iz paketa
 					redovalnica.IzpisVsehOcen(studenti)
 					return nil
 				},
@@ -84,14 +86,12 @@ func main() {
 				Name:  "uspeh",
 				Usage: "Izpiši končni uspeh",
 				Action: func(ctx context.Context, cmd *cli.Command) error {
-					// Kliče funkcijo iz paketa
 					redovalnica.IzpisiKoncniUspeh(studenti)
 					return nil
 				},
 			},
 		},
 
-		// Privzeta akcija (če ni ukaza)
 		Action: func(ctx context.Context, cmd *cli.Command) error {
 			fmt.Println("=== REDOVALNICA ===")
 			fmt.Println("Uporaba: redovalnica [ukaz]")
@@ -106,7 +106,6 @@ func main() {
 		},
 	}
 
-	// Zaženi program
 	if err := cmd.Run(context.Background(), os.Args); err != nil {
 		log.Fatal(err)
 	}
