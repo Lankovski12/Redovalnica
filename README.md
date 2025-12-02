@@ -1,9 +1,9 @@
 # Redovalnica
 
-Paket Redovalnica predstavlja preprosto aplikacijo za upravljanje študenskih ocen. Hranimo podatke o študentih (ime, priimek, vpisna številka, ocene) in omogoča dodajanje ocen in izpis redovalnice ter končnega uspega. Paket vsebuje naslednje funkcije:
+Paket Redovalnica predstavlja preprosto aplikacijo za upravljanje študenskih ocen. Hranimo podatke o študentih (ime, priimek, vpisna številka, ocene) in omogoča dodajanje ocen in izpis redovalnice ter končnega uspeha. Paket vsebuje naslednje funkcije:
 
 - DodajOceno(vpisnaStevilka, ocena): Študentu lahko vpišemo novo oceno.
-- IzpisVsehOcen: Namenjen prikazu vseh študenov in njihovih ocen.
+- IzpisVsehOcen: Namenjen prikazu vseh študentov in njihovih ocen.
 - IzpisiKoncniUspeh: Izračunamo povprečje ocen ter izpišemo povprečje vseh študentov.
 
 Paket interno vsebuje tudi funkcijo povprečje, ki pa ni javna. <br>
@@ -21,36 +21,27 @@ In namestiti odvisnosti:
 ```bash
 go mod download
 ```
-Ko smo paket namestili, paket naj prej zgradimo z ukazom:
+Ko smo paket namestili, aplikacijo naj prej zgradimo z ukazom:
 ```bash
  go build ./cmd/main.go
 ```
-Ko aplikacijo zaženemo, se nam izpiše nekaj pomebnih informaciji.
+Ko aplikacijo zaženemo, se nam izpiše nekaj pomembnih informaciji. Na tej točki je tudi potrebno dodati stikala, katera si želimo, da bi veljala v seji. Ko program teče ne moremo več dodajati ali spreminjati stikal.
 ```bash
- go run ./cmd/main.go
+ go run ./cmd/main.go [stikala]
 ```
 ```bash
 === REDOVALNICA ===
-Uporaba: go run ./main.go [stikalo] [ukaz]
-
+Uporaba: ukaz [argumenti]
 Ukazi:
-  dodaj [vpisnaStevilka] [ocena]   - Dodaj oceno študentu
-  izpis   - Prikaži vse ocene
-  uspeh   - Prikaži končni uspeh
-
-Primer: go run ./cmd/main.go --stOcen=5 izpis
+  dodaj <vpisna> <ocena>  - Dodaj oceno študentu
+  izpis                   - Prikaži vse ocene
+  uspeh                   - Prikaži končni uspeh
+  izhod                   - Zapri program
 ```
-Za pomoč, kako uporabljati paket, lahko uporabimo ukaz:
-```bash
- go run ./cmd/main.go -h
-//ali
-go run ./cmd/main.go --help
-```
-
-Spodaj so prikazani primeri kako uporabljamo aplikacijo in kako spreminjamo stikala.<br>
+Spodaj so prikazani primeri, kako uporabljamo aplikacijo in kako spreminjamo stikala.<br>
 Za uporabo funkcije IzpisVsehOcen uporabimo besedo <strong>izpis</strong>.
 ```bash
-go run ./cmd/main.go izpis
+izpis
 ```
 Izpis funkcije zgleda tako:
 ```bash
@@ -61,9 +52,9 @@ REDOVALNICA:
 63220010 - Pipi Strel: [3 4 2 5 2 3 6]
 63220999 - Jozica Marks: [5 6 8 9 2 3]
 ```
-Za uporabo funkcije IzpisiKonciUspeh upoaabimo besedo <strong>uspeh</strong>.
+Za uporabo funkcije IzpisiKonciUspeh uporabimo besedo <strong>uspeh</strong>.
 ```bash
-go run ./cmd/main.go uspeh
+uspeh
 ```
 Izpis funkcije zgleda tako:
 ```bash
@@ -75,19 +66,22 @@ Lana Tkalcic: povprečna ocena 8.0 -> Povprečen študent
 ```
 Za uporabo funkcije DodajOceno uporabimo besedo <strong>dodaj</strong>.
 ```bash
-go run ./cmd/main.go dodaj <vpisnaStevilka> <ocena>
+dodaj <vpisnaStevilka> <ocena>
 ```
-Sama funkcija ne izpiše ničesar, vendar izpiše napako oziroma upešen vpis ocene:
+Ob neuspešnem dodajanju, dobimo informacijo o napaki. Ob uspehu pa dobimo potrditev, da je bilo dodajanje uspešno.
 ```bash
 //napaka, premalo podatkov
-Uporaba: go run ./cmd/main.go dodaj <vpisnaStevilka> <ocena>
+Premalo argumentov.
 //napaka, parameter ocena ni bila število
-Napaka, vpisi stevilo.
+Napaka, ocena ni število.
 //ocena je bilo uspesno vpisana
 Ocena je dodana. Preverite z 'izpis'.
 ```
-Stikala pa spreminjamo tako:
+Stikala moramo dodati k ukazu za pogon aplikacije.
 ```bash
-go run ./cmd/main.go --stOcen=3 uspeh
+go run ./cmd/main.go --stOcen=3 --minOcena=3
 ```
-
+Ko želimo zaključi aplikacijo preprosto napisemo <strong>izhod</strong>.
+```bash
+izhod
+```
