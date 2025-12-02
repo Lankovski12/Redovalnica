@@ -2,18 +2,21 @@ package redovalnica
 
 import "fmt"
 
+// definiramo stukturo student
 type Student struct {
 	Ime     string
 	Priimek string
 	Ocene   []int
 }
 
+// definiramo spremenljivke, definirali smo jih kot stikala v main.go
 var (
 	stOcen   = 6
 	minOcena = 1
 	maxOcena = 10
 )
 
+// vidna funkcija, ki studentu doda oceno
 func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
 	student, ok := studenti[vpisnaStevilka]
 
@@ -29,6 +32,7 @@ func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int) {
 	}
 }
 
+// skrita funkcija, ki izracuna povprecje vseh ocen
 func povprecje(studenti map[string]Student, vpisnaStevilka string) float64 {
 	student, ok := studenti[vpisnaStevilka]
 	if ok {
@@ -46,6 +50,7 @@ func povprecje(studenti map[string]Student, vpisnaStevilka string) float64 {
 	return -1.0
 }
 
+// javna funkcija, ki izpise vse ocene za vse studente
 func IzpisVsehOcen(studenti map[string]Student) {
 	fmt.Printf("REDOVALNICA:\n")
 	for vpisna, student := range studenti {
@@ -53,6 +58,7 @@ func IzpisVsehOcen(studenti map[string]Student) {
 	}
 }
 
+// javna funkcija, ki izračuna uspeh vseh studentov in jih izpise
 func IzpisiKoncniUspeh(studenti map[string]Student) {
 	for vpisna, student := range studenti {
 		povprecna := povprecje(studenti, vpisna)
