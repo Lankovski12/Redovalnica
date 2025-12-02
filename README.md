@@ -1,6 +1,6 @@
 # Redovalnica
 
-Paket Redovalnica predstavlja preprosto aplikacijo za upravljanje študenskih ocen. Hranimo podatke o študentih (ime, priimek, vpisna številka, ocene) in omogoča dodajanje ocen in izpis redovalnice ter končnega uspeha. Paket vsebuje naslednje funkcije:
+Paket Redovalnica predstavlja aplikacijo za upravljanje študenskih ocen. Hrani podatke o študentih (ime, priimek, vpisna številka, ocene) in omogoča dodajanje ocen in izpis redovalnice ter končnega uspeha. Paket vsebuje naslednje funkcije:
 
 - DodajOceno(vpisnaStevilka, ocena): Študentu lahko vpišemo novo oceno.
 - IzpisVsehOcen: Namenjen prikazu vseh študentov in njihovih ocen.
@@ -9,9 +9,9 @@ Paket Redovalnica predstavlja preprosto aplikacijo za upravljanje študenskih oc
 Paket interno vsebuje tudi funkcijo povprečje, ki pa ni javna. <br>
 
 Paket prav tako ponuja tri stikala, ki so namenjena spreminjanju pravil o ocenjevanju:
-- stOcen: Spreminjano koliko ocen je potrebnih, da študent uspešno opravi predmet. Prevzeta vrednost je 6.
-- minOcena: Spremenimo lahko katera ocena je najmanjša, ki jo lahko študent pridobi. Prevzeta vrednost je 1.
-- maxOcena: Spremenimo lahko katera ocena je najvišja, ki jo lahko študent pridobi. Prevzeta vrednost je 10.
+- stOcen: Spreminjano koliko ocen je potrebnih, da študent uspešno opravi predmet. Privzeta vrednost je 6.
+- minOcena: Spremenimo lahko katera ocena je najmanjša, ki jo lahko študent pridobi. Privzeta vrednost je 1.
+- maxOcena: Spremenimo lahko katera ocena je najvišja, ki jo lahko študent pridobi. Privzeta vrednost je 10.
 
 Paket je potrebno naj prej namestiti z ukazom: <br>
 ```bash
@@ -39,6 +39,7 @@ Ukazi:
   izhod                   - Zapri program
 ```
 Spodaj so prikazani primeri, kako uporabljamo aplikacijo in kako spreminjamo stikala.<br>
+
 Za uporabo funkcije IzpisVsehOcen uporabimo besedo <strong>izpis</strong>.
 ```bash
 izpis
@@ -80,6 +81,25 @@ Ocena je dodana. Preverite z 'izpis'.
 Stikala moramo dodati k ukazu za pogon aplikacije.
 ```bash
 go run ./cmd/main.go --stOcen=3 --minOcena=3
+```
+Za dodatne informacije o stikalih lahko napišemo naslednji ukaz.
+```bash
+go run ./cmd/main.go --help
+//ali
+go run ./cmd/main.go -h
+```
+```bash
+NAME:
+   Redovalnica - Aplikacija za upravljanje študentskih ocen
+
+USAGE:
+   Redovalnica [global options]
+
+GLOBAL OPTIONS:
+   --stOcen int    Minimalno število ocen za pozitivno oceno (default: 6)
+   --minOcena int  Najmanjša možna ocena (default: 1)
+   --maxOcena int  Največja možna ocena (default: 10)
+   --help, -h      show help
 ```
 Ko želimo zaključi aplikacijo preprosto napisemo <strong>izhod</strong>.
 ```bash
