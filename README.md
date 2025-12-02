@@ -2,10 +2,9 @@
 
 Paket Redovalnica predstavlja preprosto aplikacijo za upravljanje študenskih ocen. Hranimo podatke o študentih (ime, priimek, vpisna številka, ocene) in omogoča dodajanje ocen in izpis redovalnice ter končnega uspega. Paket vsebuje naslednje funkcije:
 
-- DodajOceno(vpisnaŠtevilka, ocena): Študentu lahko vpišemo novo oceno.
-- IzpisVsehOcen: Namenjen prikazu vseh študenov in njhovih ocen.
+- DodajOceno(vpisnaStevilka, ocena): Študentu lahko vpišemo novo oceno.
+- IzpisVsehOcen: Namenjen prikazu vseh študenov in njihovih ocen.
 - IzpisiKoncniUspeh: Izračunamo povprečje ocen ter izpišemo povprečje vseh študentov.
-<br>
 
 Paket interno vsebuje tudi funkcijo povprečje, ki pa ni javna. <br>
 
@@ -29,7 +28,9 @@ Ko smo paket namestili, paket naj prej zgradimo z ukazom:
 Ko aplikacijo zaženemo, se nam izpiše nekaj pomebnih informaciji.
 ```bash
  go run ./cmd/main.go
- === REDOVALNICA ===
+```
+```bash
+=== REDOVALNICA ===
 Uporaba: go run ./main.go [stikalo] [ukaz]
 
 Ukazi:
@@ -37,9 +38,8 @@ Ukazi:
   izpis   - Prikaži vse ocene
   uspeh   - Prikaži končni uspeh
 
-Primer: redovalnica --stOcen=5 izpis
+Primer: go run ./cmd/main.go --stOcen=5 izpis
 ```
-
 Za pomoč, kako uporabljati paket, lahko uporabimo ukaz:
 ```bash
  go run ./cmd/main.go -h
@@ -67,24 +67,24 @@ go run ./cmd/main.go uspeh
 ```
 Izpis funkcije zgleda tako:
 ```bash
-Jozica Marks: povprečna ocena 5.5 -> Neuspešen študent!
-Lana Tkalcic: povprečna ocena 8.0 -> Povprečen študent!
-Marjanca Token: povprečna ocena 9.0 -> Odličen študent!
-Peter Miki: povprečna ocena 0.0 -> Neuspešen študent!
+Marjanca Token: povprečna ocena 9.0 -> Odličen študent
+Peter Miki: povprečna ocena 0.0 -> Neuspešen študent
 Pipi Strel: povprečna ocena 3.6 -> Neuspešen študent
+Jozica Marks: povprečna ocena 5.5 -> Neuspešen študent
+Lana Tkalcic: povprečna ocena 8.0 -> Povprečen študent
 ```
 Za uporabo funkcije DodajOceno uporabimo besedo <strong>dodaj</strong>.
 ```bash
 go run ./cmd/main.go dodaj <vpisnaStevilka> <ocena>
 ```
-Samo funkcija ne izpiše ničesar, vendar izpise le če je bila napaka ozrioma če se je ocena pravilo dodala v redovalnico:
+Sama funkcija ne izpiše ničesar, vendar izpiše napako oziroma upešen vpis ocene:
 ```bash
 //napaka, premalo podatkov
-Uporaba: redovalnica dodaj <vpisnaStevilka> <ocena>
+Uporaba: go run ./cmd/main.go dodaj <vpisnaStevilka> <ocena>
 //napaka, parameter ocena ni bila število
 Napaka, vpisi stevilo.
 //ocena je bilo uspesno vpisana
-Ukaz izveden. Preverite z 'izpis'.
+Ocena je dodana. Preverite z 'izpis'.
 ```
 Stikala pa spreminjamo tako:
 ```bash

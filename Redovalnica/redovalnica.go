@@ -63,11 +63,11 @@ func IzpisiKoncniUspeh(studenti map[string]Student) {
 	for vpisna, student := range studenti {
 		povprecna := povprecje(studenti, vpisna)
 		if povprecna >= 9.0 {
-			fmt.Printf("%s %s: povprečna ocena %.1f -> Odličen študent!\n", student.Ime, student.Priimek, povprecna)
+			fmt.Printf("%s %s: povprečna ocena %.1f -> Odličen študent\n", student.Ime, student.Priimek, povprecna)
 		} else if povprecna >= 6.0 && povprecna < 9.0 {
-			fmt.Printf("%s %s: povprečna ocena %.1f -> Povprečen študent!\n", student.Ime, student.Priimek, povprecna)
+			fmt.Printf("%s %s: povprečna ocena %.1f -> Povprečen študent\n", student.Ime, student.Priimek, povprecna)
 		} else {
-			fmt.Printf("%s %s: povprečna ocena %.1f -> Neuspešen študent!\n", student.Ime, student.Priimek, povprecna)
+			fmt.Printf("%s %s: povprečna ocena %.1f -> Neuspešen študent\n", student.Ime, student.Priimek, povprecna)
 		}
 	}
 }

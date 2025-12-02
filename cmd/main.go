@@ -66,7 +66,7 @@ func main() {
 
 					redovalnica.DodajOceno(studenti, vpisna, ocena)
 
-					fmt.Printf("Ukaz izveden. Preverite z 'izpis'.\n")
+					fmt.Printf("Ocena je dodana. Preverite z 'izpis'.\n")
 
 					return nil
 				},
