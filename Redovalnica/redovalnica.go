@@ -1,3 +1,16 @@
+// Paket redovalnica hrani in omogoča opravljanje ocen študentov
+//
+// Paket ponuja tri funkcije
+// DodajOceno: študentu dodamo oceno
+// IzpisVsehOcen: Izpišemo vse ocene vseh študentov
+// IzpisiKoncniUspeh: izračunamo povprečje študentov in izpišemo njihov uspeh
+// Ponuja tudi skrito funkcijo povprecje, ki izračuna povprečje ocen
+//
+// Ponuja tudi tri stikala:
+// stOcen: najmanjše število ocen za pozitivno oceno
+// minOcena: najmanjša dovoljena ocena
+// maxOccena: največja dovoljena ocena
+
 package redovalnica
 
 import "fmt"
